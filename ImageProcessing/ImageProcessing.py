@@ -20,7 +20,9 @@ def main():
     pts2=ImageHelper.GetCoorinatesaspoints(coord)
     pts3=pts2-pts1
     perspectiveimage=ImageHelper.GetPerspectiveTransform(pts1,pts2)
-    newimage=cv2.warpPerspective(image,perspectiveimage,(300,300))
+    maximumx=max(pts2,key=lambda x:float(x[0]))[0]
+    maximumxy=max(pts2,key=lambda x:float(x[1]))[1]
+    newimage=cv2.warpPerspective(image,perspectiveimage,(maximumx,maximumxy))
 
     #cv2.resize()
     ImageHelper.DisplayImage(image)
