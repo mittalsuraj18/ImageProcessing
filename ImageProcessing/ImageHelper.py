@@ -2,19 +2,19 @@ import cv2
 import numpy
 
 
-def loadImage(path):
+def load_image(path):
     image = cv2.imread(path, 1)
     return image
 
 
-def DisplayImage(imagevariable):
+def display_image(imagevariable):
     if (imagevariable != None):
         cv2.imshow('Image', imagevariable)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
 
-def GetHeightAndWidth(image):
+def get_height_width(image):
     if image != None:
         height, width = image.shape[0:2]
         return height, width
@@ -22,12 +22,12 @@ def GetHeightAndWidth(image):
         return None, None
 
 
-def GetImageCoordinates(height, width):
+def get_image_coordinates(height, width):
     if (height != None and width != None):
         return numpy.float32([[0, 0], [width, 0], [0, height], [width, height]])
 
 
-def GetCoorinatesaspoints(coordinates):
+def get_cooridnates_as_points(coordinates):
     list_coordinates=list(coordinates)
     if list_coordinates!=None:
         p1=(str(list_coordinates[0]).split(","))
@@ -43,7 +43,10 @@ def GetCoorinatesaspoints(coordinates):
     else:
         return None
 
-def GetPerspectiveTransform(pt1,pt2):
+
+def get_perspective_transform_matrix(pt1,pt2):
     return cv2.getPerspectiveTransform(pt1, pt2)
 
 
+def get_warped_image(srcImage,transformMatrix,(dimX,dimY)):
+    return cv2.warpPerspective(srcImage, transformMatrix, (dimX, dimY))
