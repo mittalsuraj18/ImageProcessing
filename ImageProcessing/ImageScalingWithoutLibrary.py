@@ -6,17 +6,20 @@ import numpy as np
 import cv2
 def main():
     # Sample Image for Testing
-    imagepath = "Sample/1.jpg"
-    savepath = "Sample/2.jpg"
-    #imagepath = raw_input("enter image path")
+    #imagepath = "Sample/1.jpg"
+    imagepath = raw_input("enter image path")
 
+    savepath = "Sample/2.jpg"
 
     #Accept other imputs
-    pivot=[0.0,0.0]
-    #pivot=raw_input("Enter centre point for zooming X,Y").split(",")
+    #pivot=["0.0","0.0"]
+    pivot=raw_input("Enter centre point for zooming X,Y").split(",")
+    pivot[0]=float(pivot[0])
+    pivot[1]=float(pivot[1])
 
-    scale=1.5
-    #scale=raw_input("Enter zoom value>1")
+
+    #scale=1.5
+    scale=float(raw_input("Enter zoom value>1"))
 
 
     image = cv2.imread(imagepath,1)
@@ -29,8 +32,8 @@ def main():
     y=y/(scale*2)
     xmin=0;ymin=0;xmax=width;ymax=height
 
-    pivot[0]=width/2
-    pivot[1]=height/2
+    #pivot[0]=width/2
+    #pivot[1]=height/2
 
     tempx1=pivot[0]-x
     tempx2=pivot[0]+x
